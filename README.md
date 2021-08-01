@@ -21,7 +21,7 @@
   - Date Range: 01-01-2021 to 01-08-2021
   
 ## Input:
-- User can enter the name of any sales representative.
+- User can enter the name of any sales Representative's name.
 ## Output:
 - Table containing:
   - Products he/she has sold
