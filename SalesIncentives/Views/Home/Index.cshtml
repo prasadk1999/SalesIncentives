@@ -1,0 +1,60 @@
+﻿@model SalesIncentives.Models.ViewModel.SalesRepVM;
+@{
+    ViewData["Title"] = "Home Page";
+}
+@*//asp-action="GetRepData" asp-controller="Home" asp-route-Name="@Model.SalesRepName"*@
+<div class="text-center">
+    <form method="post">
+        <div class="row text-center">
+            <div class="col-md-4 py-2 pr-3">
+                <label  asp-for="@Model.SalesRepName" ></label>
+            </div>
+            <div class="col-md-4">
+                <input class="form-control" type="text" asp-for="@Model.SalesRepName" list="suggestions" />
+                <datalist id="suggestions">
+                    
+                 </datalist>
+                <br />
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-success" asp-controller="Home" asp-action="GetRepData" asp-route-Data="@Model.SalesRepName" type="submit"> Get Details</button>
+            </div>
+        </div>
+    </form>
+    <h1 class="text-center font-weight-bold">@Model.SalesRepName</h1>
+    @if (Model.Products== null)
+    {
+        <p>No data to display</p>
+    }
+    else
+    {
+        <table class="table table-striped border table-hover">
+            <tr>
+                <th>Product</th>
+                <th>Sales Value</th>
+            </tr>
+            @for (var i = 0; i < Model.Products.Count; i++)
+            {
+                <tr>
+                    <td>@Model.Products.ElementAt(i)</td>
+                    <td>@Model.SalesPerProduct.ElementAt(i).ToString("c")</td>
+                </tr>
+            }
+            <tr class="font-weight-bold">
+                <td>Total Sales Value</td>
+                <td>@Model.TotalSales.ToString("c")</td>
+            </tr>
+        </table>
+        <div class="row text-center position-relative">
+            <div  class="col-md-6">
+             <label asp-for="@Model.Incentive" class="font-weight-bold h3 px-1 pl-5 "></label>
+            </div>
+            <div class="col-md-6">
+                <p class="font-weight-bold border shadow-sm p-1 pl-4 h4 ">@Model.Incentive.ToString("c")</p>
+            </div>
+        </div>
+
+    }
+</div>
+<script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js" ></script>
+<script type="text/javascript" src="~/js/index.js"></script>
